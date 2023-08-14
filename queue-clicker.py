@@ -5,6 +5,7 @@ import time
 ##################  PREREQUISITES  ##################
 #####################################################
 # pip install pyautogui
+# pip install opencv-python
 # time library is part of python
 #####################################################
 #####################################################
@@ -19,3 +20,20 @@ import time
 # KILL: This script will be killed once it accepts..
 #####################################################
 #####################################################
+
+print("Waiting to accept queue...")
+
+def clicking():
+    while True:
+        pos = pyautogui.locateOnScreen('img.jpg', confidence=0.9)
+        print(pos)
+        if (pos):
+            center = pyautogui.center(pos)
+            pyautogui.click(center)
+            exit()
+
+        print("Checking..")
+        
+        time.sleep(10)
+        
+clicking()
