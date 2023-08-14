@@ -21,11 +21,13 @@ import time
 #####################################################
 #####################################################
 
+image = "images/img.jpg"
+
 print("Waiting to accept queue...")
 
 def clicking():
     while True:
-        pos = pyautogui.locateOnScreen('img.jpg', confidence=0.9)
+        pos = pyautogui.locateOnScreen(image, confidence=0.9)
         print(pos)
         if (pos):
             center = pyautogui.center(pos)
