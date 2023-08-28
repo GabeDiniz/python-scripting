@@ -7,6 +7,10 @@ import time
 # pip install pyautogui
 # pip install opencv-python
 # time library is part of python
+
+# Add an image to the images folder and be sure to
+#   change the image variable so it matches the name
+#   of you image (i.e., img.jpg | button.png | etc.)
 #####################################################
 #####################################################
 
@@ -32,10 +36,9 @@ def clicking():
         if (pos):
             center = pyautogui.center(pos)
             pyautogui.click(center)
-            exit()
 
         print("Checking..")
         
-        time.sleep(10)
+        time.sleep(15)
         
 clicking()
