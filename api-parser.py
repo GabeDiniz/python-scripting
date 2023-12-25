@@ -3,7 +3,11 @@ import json
 import matplotlib.pyplot as plt
 import datetime
 
-api_url = "https://api.stlouisfed.org/fred/series/observations?series_id=GNPCA&<apiKey-HERE>"
+# Fetch API key from local .env variables 
+from decouple import config
+
+api_key = config('api_key')
+api_url = f"https://api.stlouisfed.org/fred/series/observations?series_id=GNPCA&{api_key}"
 
 response = requests.get(api_url)
 

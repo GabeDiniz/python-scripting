@@ -1,11 +1,31 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+#####################################################
+##################  PREREQUISITES  ##################
+#####################################################
+# pip install numpy
+# pip install matplotlib
+#####################################################
+#####################################################
+
+
+#####################################################
+######################  USAGE  ######################
+#####################################################
+# Call the script using:
+# python stockPriceSimulator.py
+# You may also adjust the parameters below. 
+#####################################################
+#####################################################
+
 # Parameters
 current_price = 100  # current stock price in dollars
 volatility = 0.1     # stock volatility (10%)
-timeframe = 252      # number of trading days in a year
 simulations = 10   # number of simulations
+
+timeframe = 252      # number of trading days in a year
 
 # Simulating stock prices
 np.random.seed(0)  # for reproducible results
