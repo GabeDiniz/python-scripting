@@ -9,6 +9,8 @@ from decouple import config
 api_key = config('api_key')
 api_url = f"https://api.stlouisfed.org/fred/series/observations?series_id=GNPCA&{api_key}"
 
+print(api_url)
+
 response = requests.get(api_url)
 
 if response.status_code == 200:
