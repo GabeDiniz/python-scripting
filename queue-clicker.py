@@ -34,14 +34,24 @@ This script can only be killed manually using
 print("Running...\n***\nPlease ensure your game is tabbed in on your main monitor.\n***")
 
 def clicking():
+    # Init time_running variable
+    time_running = 0
+
+    # Loop checking for Queue Image
     while True:
+        # Check if Queue Image has popped (appeared on users screen)
         pos = pyautogui.locateOnScreen(image, confidence=0.9)
+
+        # If Queue Image is present, click it
         if (pos):
             center = pyautogui.center(pos)
             pyautogui.click(center)
+            print("Queue Accepted! Please kill this script manually via the Command prompt which you ran it from...")
 
-        print("Checking..")
-        
+        print(f"Checking for {(time_running*15)/60} minutes...")
+        time_running += 1
+
+        # Sleep for 15 seconds
         time.sleep(15)
         
 clicking()
