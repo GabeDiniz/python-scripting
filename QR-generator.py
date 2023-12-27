@@ -1,7 +1,15 @@
 import qrcode
+import sys
+
+
+# Check that filename was passed as an argument
+if len(sys.argv) != 3:
+    print("Usage: python QR-generator.py <url> <filename>")
+    print("Example: python QR-generator.py https://www.youtube.com/ YouTube")
+    sys.exit(1)
 
 # URL to be made into a QR
-data = "https://www.example.com"
+data = sys.argv[1]
 
 # QRcode Class
 qr = qrcode.QRCode(
@@ -19,4 +27,4 @@ qr.make(fit=True)
 img = qr.make_image(fill_color="black", back_color="white")
 
 # Save the QR as a png
-img.save("QR.png")
+img.save(f"{sys.argv[2]}.png")
