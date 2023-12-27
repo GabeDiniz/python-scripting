@@ -5,20 +5,19 @@ import matplotlib.pyplot as plt
 #####################################################
 ##################  PREREQUISITES  ##################
 #####################################################
-# pip install numpy
-# pip install matplotlib
-#####################################################
-#####################################################
-
+'''
+pip install numpy
+pip install matplotlib
+'''
 
 #####################################################
 ######################  USAGE  ######################
 #####################################################
-# Call the script using:
-# python stockPriceSimulator.py
-# You may also adjust the parameters below. 
-#####################################################
-#####################################################
+'''
+Call the script using:
+python stockPriceSimulator.py
+You may also adjust the parameters below. 
+'''
 
 # Parameters
 current_price = 100  # current stock price in dollars

@@ -5,23 +5,30 @@ import argparse
 #####################################################
 ##################  PREREQUISITES  ##################
 #####################################################
-# pip install pyautogui
-# time and argparse library are part of python
-#####################################################
-#####################################################
+'''
+pip install pyautogui
+time and argparse library are part of python
+'''
 
 #####################################################
 ######################  USAGE  ######################
 #####################################################
-# Call the script using:
-# python afk-clicker.py -t <time in minutes>
-# This will trigger your computer to left-click 
-#       every 30 seconds..
-# WARNING: This script does not care what application 
-#       you are in.. it will left click regardless
-# KILL: This script can only be killed manually..
-#####################################################
-#####################################################
+'''
+python afk-clicker.py -t <time in minutes>
+
+Description:
+This will trigger your computer to left-click 
+  every 30 seconds..
+  
+WARNING: 
+This script does not care what application 
+  you are in.. it will left click regardless
+
+KILL: 
+This script can only be killed manually using 
+  CTRL + C via the Command Prompt
+'''
+
 
 ## Argument Parser
 parser = argparse.ArgumentParser()
