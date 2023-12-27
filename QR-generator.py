@@ -1,6 +1,25 @@
 import qrcode
 import sys
 
+#####################################################
+##################  PREREQUISITES  ##################
+#####################################################
+'''
+pip install qrcode[pil]
+'''
+
+#####################################################
+######################  USAGE  ######################
+#####################################################
+'''
+python QR-generator.py <url> <filename>
+
+Description: 
+The URL parameter is the link you would like the QR
+  code to lead to, and filename is the name of 
+  the image it will generate
+'''
+
 
 # Check that filename was passed as an argument
 if len(sys.argv) != 3:
