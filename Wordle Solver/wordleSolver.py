@@ -1,4 +1,26 @@
+#####################################################
+######################  USAGE  ######################
+#####################################################
+'''
+python wordleSolver.py
 
+Description: 
+The script will ask you to enter the green letters
+  and the yellow letters that are known. From that
+  it will iterate through a list of valid words and
+  return a list of the possible words.
+
+Time Complexity: O(n)
+1. Looping over greens: we iterate through each char
+  in greens. Since the greens string of max length 5
+  the loop runs 5 times, resulting in O(5) which 
+  simplifies to O(1)
+
+2. List Comprehension: Here we create a new list of
+  words by iterating through each word. The time
+  complexity here depends on the list of words (n). 
+  Therefore, the time complexity here is O(n). 
+'''
 
 # Load the list of potential words
 with open('wordlist.txt', 'r') as file:
