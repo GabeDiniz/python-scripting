@@ -1,8 +1,8 @@
-import re # Regular Expression
+
 
 # Load the list of potential words
 with open('wordlist.txt', 'r') as file:
-  words = [line.strip() for line in file if len(line.strip() == 5)]
+  words = [line.strip() for line in file]
 
 # Function for finding potential words
 def find_words(words, greens, yellows):
@@ -22,8 +22,8 @@ def find_words(words, greens, yellows):
   return words
 
 # User input for green and yellow letters
-green_letters = input("Enter green letters (use '_' for unknowns): ")  # e.g., "_pp_e"
-yellow_letters = input("Enter yellow letters (use '_' for unknowns): ")  # e.g., "l__r_"
+green_letters = input("Enter green letters (use '_' for unknowns): ")  # e.g., _pp_e
+yellow_letters = input("Enter yellow letters (use '_' for unknowns): ")  # e.g., l__r_
 
 # Finding possible words
 possible_words = find_words(words, green_letters, yellow_letters)
