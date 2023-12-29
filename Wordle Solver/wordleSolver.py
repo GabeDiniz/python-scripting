@@ -44,8 +44,13 @@ def find_words(words, greens, yellows):
   return words
 
 # User input for green and yellow letters
-green_letters = input("Enter green letters (use '_' for unknowns): ")  # e.g., _pp_e
-yellow_letters = input("Enter yellow letters (use '_' for unknowns): ")  # e.g., l__r_
+while True:
+  green_letters = input("Enter green letters (use '_' for unknowns): ")  # e.g., _pp_e
+  yellow_letters = input("Enter yellow letters (use '_' for unknowns): ")  # e.g., l__r_
+  if len(green_letters) !=5 or len(yellow_letters) != 5:
+    print("Error: The length of the input should be 5.\nExample: h_ll_ / _____ / etc.")
+  else:
+    break
 
 # Finding possible words
 possible_words = find_words(words, green_letters, yellow_letters)
