@@ -27,20 +27,27 @@ with open('wordlist.txt', 'r') as file:
   words = [line.strip() for line in file]
 
 # Function for finding potential words
-def find_words(words, greens, yellows):
+def find_words(words, greens, yellows, grays):
 
-  # Filter thrugh words based on GREEN letters
+  # Filter through words based on GRAY letters
+  for char in grays:
+    words = [word for word in words if char not in word]
+  
+  print(words)
+
+  # Filter through words based on GREEN letters
   for pos, char in enumerate(greens):
     if char != '_': # If char is not a blank/unknown
       # Append word to new listof words if current word has the green char in the same position 
       words = [word for word in words if word[pos] == char]
 
-  # Filter thrugh words based on YELLOW letters
+  print(words)
+  # Filter through words based on YELLOW letters
   for pos, char in enumerate(yellows):
     if char != '_': # If char is not a blank/unknown
       # Append word to new listof words if current word DOES NOT have the yellow letter in the same position
       words = [word for word in words if char in word and word[pos] != char]
-  
+      
   return words
 
 # User input for green and yellow letters
@@ -52,6 +59,8 @@ while True:
   else:
     break
 
+gray_letters = input("Enter the gray letters (i.e., ahdfb): ")
+
 # Finding possible words
-possible_words = find_words(words, green_letters, yellow_letters)
+possible_words = find_words(words, green_letters, yellow_letters, gray_letters)
 print("Possible words:", possible_words)
