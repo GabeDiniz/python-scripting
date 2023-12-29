@@ -1,3 +1,6 @@
+import tkinter as tk
+from tkinter import messagebox
+
 #####################################################
 ######################  USAGE  ######################
 #####################################################
@@ -32,8 +35,6 @@ def find_words(words, greens, yellows, grays):
   # Filter through words based on GRAY letters
   for char in grays:
     words = [word for word in words if char not in word]
-  
-  print(words)
 
   # Filter through words based on GREEN letters
   for pos, char in enumerate(greens):
@@ -41,13 +42,12 @@ def find_words(words, greens, yellows, grays):
       # Append word to new listof words if current word has the green char in the same position 
       words = [word for word in words if word[pos] == char]
 
-  print(words)
   # Filter through words based on YELLOW letters
   for pos, char in enumerate(yellows):
     if char != '_': # If char is not a blank/unknown
       # Append word to new listof words if current word DOES NOT have the yellow letter in the same position
       words = [word for word in words if char in word and word[pos] != char]
-      
+
   return words
 
 # User input for green and yellow letters
