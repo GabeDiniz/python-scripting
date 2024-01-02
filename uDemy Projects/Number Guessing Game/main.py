@@ -1,6 +1,18 @@
 from random import randint
 
-lower, higher = 1, 10
+lower = 1
+print("Enter the upper bound of the range you would like to guess to. This number should be greater than 1.")
+while True:
+  try:
+    higher: int = int(input("Higher bound: "))
+    if higher < 2: 
+      print("Please enter a number greater than 1.")
+      continue
+  except ValueError:
+    print("Please enter a valid number.")
+    continue
+  break
+
 # Generate number between 1 and 10
 random_num: int = randint(lower, higher)
 
