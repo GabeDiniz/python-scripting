@@ -30,6 +30,9 @@ def run_game():
       break
     
     guess: str = input("Enter a letter: ")
+    if len(guess) != 1:
+      print("Please enter a single letter.")
+      continue
 
     # If current guess has already been used, try again
     if guess in guessed:
@@ -39,7 +42,7 @@ def run_game():
 
     if guess not in word:
       tries -= 1
-      print(f"Letter is not in the word... ({tries} tries remaining)")
+      print(f"That letter is not in the word... ({tries} tries remaining)")
 
       if tries == 0:
         print("No more tries remaining... You lose.")
