@@ -21,13 +21,15 @@ def main():
       if user_input.lower() == "exit":
         print("Thanks for playing!")
         break
-
-      print(*roll_dice(int(user_input)), sep=', ')
-
+      
+      result = roll_dice(int(user_input))
+      print(*result, sep=', ')
+      print(f"Total: {sum(result)}")
+    
     except ValueError:
       print("(Please enter a valid number)")
 
 
 if __name__ == '__main__':
-  print("Type exit to quit the game")
+  print("*****************************\nType exit to quit the game\n*****************************")
   main()
