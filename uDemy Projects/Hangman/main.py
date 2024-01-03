@@ -1,5 +1,11 @@
 from random import choice
 
+print(
+  "******************************************\n" +
+  "***        Welcome to Hangman!         ***\n" +
+  "******************************************\n"
+)
+
 def run_game():
   # Choice picks a random element from the provided list
   word: str = choice(['apple', 'secret', 'banana'])
@@ -29,8 +35,11 @@ def run_game():
       print("You win!")
       break
     
-    guess: str = input("Enter a letter: ")
-    if len(guess) != 1:
+    guess: str = input("Enter a letter (type guesses to see letters used): ")
+    if guess.lower() == "guesses":
+      print(f'You have used these letters: "{guessed}"')
+      continue
+    elif len(guess) != 1:
       print("Please enter a single letter.")
       continue
 
