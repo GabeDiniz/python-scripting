@@ -14,7 +14,7 @@ Add an image to the images folder and be sure to
   (i.e., img.jpg | button.png | etc.) 
 '''
 
-image = "images/img.jpg"
+image = "../images/csgoAccept.png"
 
 #####################################################
 ######################  USAGE  ######################
