@@ -33,7 +33,14 @@ def generate_password(length: int, symbols: bool, uppercase: bool) -> str:
   return new_password
 
 if __name__ == "__main__":
+  while True:
+    try:
+      pass_length = int(input("Please enter the length of the password you want: "))
+      break
+    except ValueError:
+      print("Please enter a valid number")
+  
   for i in range(1, 6):
-    new_pass: str = generate_password(length=10, symbols=True, uppercase=True)
+    new_pass: str = generate_password(length=pass_length, symbols=True, uppercase=True)
     specs: str = f"U: {contains_upper(new_pass)}, S: {contains_symbols(new_pass)}"
-    print(f"{i} -> {new_pass} ({specs})")
+    print(f"{i} >> {new_pass} ({specs})")
