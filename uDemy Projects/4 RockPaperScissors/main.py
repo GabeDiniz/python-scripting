@@ -4,7 +4,8 @@ import sys
 class RPS:
   def __init__(self):
     print("Welcome to RPS!")
-    self.moves: dict = {"rock": "💎", "paper": "🧻", "scissors": "✂"}
+    print("Type 'exit' at any point to quit the game...")
+    self.moves: dict = {"rock": "🗻", "paper": "🧻", "scissors": "✂"}
     # Create list of keys from dictionary 
     self.valid_moves: list[str] = list(self.moves.keys())
 
