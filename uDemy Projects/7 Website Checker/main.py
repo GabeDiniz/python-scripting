@@ -19,6 +19,8 @@ def get_websites(csv_path: str) -> list[str]:
       
     return websites
   
+
+
 def get_user_agent() -> str:
   ua = UserAgent()
   return ua.chrome
@@ -34,8 +36,8 @@ def get_status_description(status_code: int) -> str:
 
 def check_website(website: str, user_agent):
   try:
-    code: int = requests.get(website, headers={'User-Agent': user_agent}).status_code
-    print(website, get_status_description(code))
+    stat_code: int = requests.get(website, headers={'User-Agent': user_agent}).status_code
+    print(f"STATUS: {get_status_description(stat_code)} [{website}]")
   except Exception:
     print(f"**Could not get information for website: '{website}'")
 
