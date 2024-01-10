@@ -1,4 +1,4 @@
-import qrcode
+import qrcode # pip install qrcode
 from PIL import Image
 
 

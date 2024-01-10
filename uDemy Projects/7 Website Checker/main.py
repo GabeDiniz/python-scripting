@@ -1,6 +1,6 @@
 import csv
-import requests
-from fake_useragent import UserAgent
+import requests # pip install requests
+from fake_useragent import UserAgent # pip install fake_useragent
 from http import HTTPStatus
 
 # Grab websites from CSV
