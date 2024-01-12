@@ -31,7 +31,20 @@ def brute_force(word: str, length: int, digits: bool = False, symbols: bool = Fa
 
 def main():
   print("Searching...")
-  password: str = "abc1"
+  password: str = "qwert"
+
+  start_time: float = time.perf_counter()
+
+  if common_match := common_guess(password):
+    print(common_match)
+  else:
+    if cracked := brute_force(password, length=len(password), digits=True, symbols=False):
+      print(cracked)
+    else:
+      print("There was no match...")
+
+  end_time: float = time.perf_counter()
+  print(round(end_time - start_time, 2), "s")
 
 if __name__ == "__main__":
-  print(common_guess("car"))
+  main()
