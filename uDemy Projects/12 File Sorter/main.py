@@ -1,5 +1,7 @@
 import os
 import shutil
+from tkinter import filedialog
+from tkinter import *
 
 # Create a folder named after the extension of the file passed in
 def create_folder(path: str, extension: str) -> str:
@@ -39,10 +41,12 @@ def remove_empty_folders(source_path: str):
         os.rmdir(folder_path)
 
 def main():
-  user_input: str = "Please input the file path you would like to be sorted: "
-  if os.path.exists(path=user_input):
-    sort_files(user_input)
-    remove_empty_folders(user_input)
+  root = Tk()
+  root.withdraw()
+  selected_folder = filedialog.askdirectory()
+  if os.path.exists(path=selected_folder):
+    sort_files(selected_folder)
+    remove_empty_folders(selected_folder)
     print("Files sorted successfully!")
   else:
     print("Invalid path, please provide a valid file path.")
