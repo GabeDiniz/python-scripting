@@ -3,7 +3,7 @@ import shutil
 from tkinter import filedialog
 from tkinter import *
 
-# Create a folder named after the extension of the file passed in
+# Create a folder named after the extension of the file passed in -> return folder path
 def create_folder(path: str, extension: str) -> str:
   '''
   path -> Path specified by the user that holds the random files
@@ -23,13 +23,13 @@ def sort_files(source_path: str):
   for root_dir, sub_dir, filenames in os.walk(source_path):   # os.walk goes through every directory in the specified path
     for filename in filenames:
       file_path: str = os.path.join(root_dir, filename)
-      extension: str = os.path.splitext(filename)[1]  # Splits the extension
+      extension: str = os.path.splitext(filename)[1]  # Splits the extension (i.e., .png -> png)
 
       if extension:
-        target_folder: str = create_folder(source_path, extension)
-        target_path: str = os.path.join(target_folder, filename)
+        target_folder: str = create_folder(source_path, extension)  # Create the folder using create_folder function -> return folder_path
+        target_path: str = os.path.join(target_folder, filename)  # Set target path to folder_path/filename (i.e., the destination of the file)
 
-        shutil.move(file_path, target_path)
+        shutil.move(file_path, target_path)   # Move the file
 
 # Removes all empty folders
 def remove_empty_folders(source_path: str):

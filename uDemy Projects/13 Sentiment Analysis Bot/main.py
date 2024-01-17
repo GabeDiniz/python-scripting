@@ -7,6 +7,7 @@ class Mood:
     sentiment: float
 
 def get_mood(input_text: str, *, sensitivity: float) -> Mood:
+    # TextBlob can measure the sentiment polarity of a text and return a value
     polarity: float = TextBlob(input_text).sentiment.polarity
 
     friendly_threshold: float = sensitivity
