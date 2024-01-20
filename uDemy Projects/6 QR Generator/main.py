@@ -22,7 +22,9 @@ def main():
   # Initialize QR Class
   myqr = MyQR(size=40, padding=1)
   # Create QR
-  name = input("Enter your file name (ending with .png): ")
+  name = input("Enter your file/image name: ")
+  if ".png" not in name and ".jpg" not in name:
+    name += ".png"
   myqr.create_qr(name, fg="#BD8334", bg="#FAF3EF")
 
 if __name__ == "__main__":
