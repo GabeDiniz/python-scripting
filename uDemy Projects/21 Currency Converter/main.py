@@ -46,8 +46,9 @@ def convert_currency(amount: float, base: str, vs: str, rates: dict) -> float:
 def main():
   data: dict = get_rates(mock=True)
   rates: dict = data.get("rates")
-
-  convert_currency(1, "USD", "CAD", rates=rates)
+  print("Converting from ____ to CAD.")
+  fr = input("Which currency would you like to convert from: ")
+  convert_currency(1, fr, "CAD", rates=rates)
 
 if __name__ == "__main__":
   main()
