@@ -2,7 +2,6 @@ import smtplib, ssl
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from typing import AnyStr
 
 # Fetch Credentials from local .env variables 
 from decouple import config
@@ -13,7 +12,10 @@ PASSWORD = config('EMAIL_PASS')
 
 
 def create_image_attachment(path: str) -> MIMEImage:
-  raise NotImplementedError()
+  with open(path, "rb") as image:
+    mime_image = MIMEImage(image.read())
+    mime_image.add_header("Content-Disposition", f"attachment; filename={path}")
+    return mime_image
 
 def send_email(to_email: str, subject: str, body: str, image: str | None = None):
   # Host and Port for sending emails
@@ -27,7 +29,7 @@ def send_email(to_email: str, subject: str, body: str, image: str | None = None)
     server.ehlo()
 
     # Prepare the email
-    print("Attempting to send email")
+    print("Attempting to send email...")
     message = MIMEMultipart()
     message["From"] = EMAIL
     message["To"] = to_email
@@ -45,8 +47,8 @@ def send_email(to_email: str, subject: str, body: str, image: str | None = None)
 
 
 def main():
-  print(EMAIL, PASSWORD)
-  send_email(to_email="gabriel.sundiniz@gmail.com", subject="Hello", body="Testyingngngngn")
+  to: str = input("Address of who this should be sent to >> ")
+  send_email(to_email="gabriel.sundiniz@gmail.com", subject="Sent from Python!", body="Hello! What's going on!")
 
 
 if __name__ == "__main__":
