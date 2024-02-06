@@ -17,17 +17,14 @@ def create_image_attachment(path: str) -> MIMEImage:
 
 def send_email(to_email: str, subject: str, body: str, image: str | None = None):
   # Host and Port for sending emails
-  host: str = "smtp-mail.outlook.com"
-  port: int = 587
+  host: str = "smtp.gmail.com"
+  port: int = 465
 
-  context = ssl.create_default_context()
-
-  with smtplib.SMTP(host, port) as server:
+  with smtplib.SMTP_SSL(host, port) as server:
     print("Logging in...")
-    server.ehlo()
-    server.starttls(context=context)
-    server.ehlo()
+    
     server.login(EMAIL, PASSWORD)
+    server.ehlo()
 
     # Prepare the email
     print("Attempting to send email")
@@ -38,7 +35,7 @@ def send_email(to_email: str, subject: str, body: str, image: str | None = None)
     message.attach(MIMEText(body, "plain"))
 
     if image:
-      file: MIMEImage = create_image_attachment()
+      file: MIMEImage = create_image_attachment(image)
       message.attach(file)
 
     server.sendmail(from_addr = EMAIL, to_addrs = to_email, msg = message.as_string())
@@ -49,6 +46,7 @@ def send_email(to_email: str, subject: str, body: str, image: str | None = None)
 
 def main():
   print(EMAIL, PASSWORD)
+  send_email(to_email="gabriel.sundiniz@gmail.com", subject="Hello", body="Testyingngngngn")
 
 
 if __name__ == "__main__":
