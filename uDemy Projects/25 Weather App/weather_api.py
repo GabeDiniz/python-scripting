@@ -30,9 +30,8 @@ def get_weather(city_name: str, mock: bool = True) -> dict:
 def get_weather_details(weather: dict) -> list[Weather]:
   days: list[dict] = weather.get("list")
 
-  # If no data -> raise exception
-  if not days:
-    raise Exception(f"[Error] Problem with json: {weather}")
+  # If no data -> raise exception (i.e., if the city doesn't exit)
+  if not days: return None
   
   list_of_weather: list[Weather] = []
   for day in days:
@@ -46,6 +45,7 @@ def get_weather_details(weather: dict) -> list[Weather]:
   return list_of_weather
 
 
+# Testing
 if __name__ == "__main__":
   current_weather: dict = get_weather("Toronto", mock=True)
   weather: list[Weather] = get_weather_details(current_weather)
