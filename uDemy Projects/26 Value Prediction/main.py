@@ -35,7 +35,7 @@ def make_prediction(inputs: list[float], outputs: list[float], input_value: floa
 
   # Plot
   if plot:
-    raise NotImplementedError("Plot has not been created!")
+    display_plot(inputs=X, outputs=y, y_line=y_line)
   
   return Prediction(value=y_prediction[0][0],
                     r2_score=r2_score(test_y, y_test_prediction),
@@ -43,5 +43,19 @@ def make_prediction(inputs: list[float], outputs: list[float], input_value: floa
                     intercept=model.intercept_[0],
                     mean_absolute_error=mean_absolute_error(test_y, y_test_prediction))
 
+def display_plot(inputs: list[float], outputs: list[float], y_line):
+  plt.scatter(inputs, outputs, s=12)
+  plt.xlabel("Inputs")
+  plt.ylabel("Outputs")
+  plt.plot(inputs, y_line, color="r")
+  plt.show()
 
-make_prediction([1,2], [3,4], 0)
+
+if __name__ == "__main__":
+  years: list[int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  earnings: list[int] = [1000, 800, 2000, 1500, 3400, 3700, 4000, 3800, 5000, 4800]
+  my_input: int = 20
+
+  prediction: Prediction = make_prediction(inputs=years, outputs=earnings, input_value=my_input, plot=True)
+  print("Input:", my_input)
+  print(prediction)
