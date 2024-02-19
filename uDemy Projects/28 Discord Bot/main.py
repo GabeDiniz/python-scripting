@@ -31,8 +31,21 @@ def run_bot(BOT_KEY: str):
     
     if message.content:
       print(f'({message.channel}) {message.author}: "{message.content}"')
-      response: str = responses.get_response(message.content, knowledge=knowledge)
+      # Handle !help command
+      if message.content == "!help":
+        response: str = "Here are my current commands!\n```!help - List commands available```"
+      else:
+        response: str = responses.get_response(message.content, knowledge=knowledge)
+
       await message.channel.send(response)
+      '''
+      WIP: Command prefix ****
+      Description: Stops bot from erroring out if the message sent does not start with "!". get_response function
+        will return None. The following block stops the bot from trying to send None resulting in an error
+      if response:
+        await message.channel.send(response)
+      '''
+      
     # Potential error: i.e., missing permissions to access message.content
     else:
       print("[Error] Could not read the message. Make sure you have intents enabled!")
