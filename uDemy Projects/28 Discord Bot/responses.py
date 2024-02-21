@@ -21,8 +21,9 @@ def get_response(message: str, knowledge: dict) -> str:
 
   if answer := knowledge.get(best_match): 
     return answer
-  else: # Default message
-    return "I don\'t understand..."
+  # Ignore message if its not part of knowledge
+  else:
+    return
   
 def load_knowledge(file: str) -> dict:
   with open(file, "r") as f:

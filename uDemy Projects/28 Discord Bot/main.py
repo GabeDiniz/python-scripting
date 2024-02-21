@@ -1,4 +1,4 @@
-from discord import Intents, Client
+from discord import Intents, Client   # pip install discord
 import responses
 
 # Fetch Credentials from local .env variables 
@@ -29,6 +29,12 @@ def run_bot(BOT_KEY: str):
     if message.author == client.user:
       return
     
+    # ========================================
+    # Handle Responses
+    # ========================================
+    # Check for specific user
+    # if str(message.author) == "username here":
+    #   response: str = "Oh hello there... I've been expecting you"
     if message.content:
       print(f'({message.channel}) {message.author}: "{message.content}"')
       # Handle !help command
@@ -37,13 +43,13 @@ def run_bot(BOT_KEY: str):
       else:
         response: str = responses.get_response(message.content, knowledge=knowledge)
 
+    if response:
       await message.channel.send(response)
       '''
       WIP: Command prefix ****
       Description: Stops bot from erroring out if the message sent does not start with "!". get_response function
         will return None. The following block stops the bot from trying to send None resulting in an error
-      if response:
-        await message.channel.send(response)
+      
       '''
       
     # Potential error: i.e., missing permissions to access message.content
