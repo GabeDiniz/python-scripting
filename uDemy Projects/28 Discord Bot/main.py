@@ -1,5 +1,6 @@
 from discord import Intents, Client   # pip install discord
 import responses
+import help
 
 # Fetch Credentials from local .env variables 
 from decouple import config
@@ -39,7 +40,8 @@ def run_bot(BOT_KEY: str):
       print(f'({message.channel}) {message.author}: "{message.content}"')
       # Handle !help command
       if message.content == "!help":
-        response: str = "Here are my current commands!\n```!help - List commands available```"
+        response: str = help.format()   # may not be a string
+
         # response: str = ''.join([
         #   "Here are my current commands!",
         #   "\n```",  # START Markdown CODE BLOCK
