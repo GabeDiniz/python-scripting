@@ -40,17 +40,18 @@ def run_bot(BOT_KEY: str):
       # Handle !help command
       if message.content == "!help":
         response: str = "Here are my current commands!\n```!help - List commands available```"
+        # response: str = ''.join([
+        #   "Here are my current commands!",
+        #   "\n```",  # START Markdown CODE BLOCK
+        #   "!help - List commands available",
+        #   "\n!command - Command description",
+        #   "```"   # END Markdown CODE BLOCK
+        # ])
       else:
         response: str = responses.get_response(message.content, knowledge=knowledge)
-
-    if response:
-      await message.channel.send(response)
-      '''
-      WIP: Command prefix ****
-      Description: Stops bot from erroring out if the message sent does not start with "!". get_response function
-        will return None. The following block stops the bot from trying to send None resulting in an error
-      
-      '''
+    
+      if response:
+        await message.channel.send(response)
       
     # Potential error: i.e., missing permissions to access message.content
     else:
