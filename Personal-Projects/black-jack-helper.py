@@ -48,13 +48,31 @@ def next_move(players_hand, dealers_card):
   player_total = calculate_total(players_hand)
   dealer_value = get_card_value(dealers_card)
 
-  if player_total >= 17:
+  # Check for Black Jack
+  if player_total == 21:
+    print("🧨 Black Jack!")
+  # Hard totals
+  elif player_total >= 17:
     print("Book says STAND")
-  elif 13 <= player_total <= 16 and dealer_value < 7:
+  elif 13 <= player_total <= 16 and dealer_value <= 6:
+    print("Book says STAND")
+  elif 13 <= player_total <= 16 and dealer_value >= 7:
+    print("Book says HIT")
+  elif 12 == player_total and (dealer_value <= 3 or dealer_value >= 7):
+    print("Book says HIT")
+  elif 12 == player_total and 4 <= dealer_value <= 6:
     print("Book says STAND")
   elif player_total == 11:
     print("Book says DOUBLE DOWN")
-  elif player_total <= 10:
+  elif player_total == 10 and dealer_value <= 9:
+    print("DOUBLE DOWN!")
+  elif player_total == 10 and dealer_value >= 10:
+    print("Book says HIT")
+  elif player_total == 9 and 3 <= dealer_value <= 6:
+    print("DOUBLE DOWN!")
+  elif player_total == 9 and (dealer_value == 2 or dealer_value >= 7):
+    print("Book says HIT")
+  elif player_total <= 8:
     print("Book says HIT")
   else:
     print("No recommendation available for this hand.")
