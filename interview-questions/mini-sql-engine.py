@@ -106,12 +106,28 @@ def run_query(query):
         for row in rows:
             if operators[op](row[field], value):
                 filtered_rows.append(row)
+        rows = filtered_rows
 
-        #
+    # 3) ORDER BY sorting
+    if order_by_clause:
+        order_by_field = order_by_clause.strip()
+        if order_by_field not in rows[0]:
+            raise Exception(f"Field not found: {order_by_field}")
+        # Sort rows
+        rows = sorted(rows, key=lambda row: row[order_by_field])
 
+    # 4) SELECT projection
+    if select_clause.strip() == '*':
+        return rows
+    else:
+        select_fields = [field.strip() for field in select_clause.split(',')]
+        for field in select_fields:
+            if field not in rows[0]:
+                raise Exception(f"Field not found: {field}")
+        return [{col: row.get(col) for col in select_fields} for row in rows]
 
 # Insert these in the run_query to test:
-run_query("SELECT * FROM lineItems;")
+print(run_query("SELECT itemName FROM lineItems WHERE price > 1000;"))
 # SELECT itemName FROM lineItems WHERE price > 1000;
 # SELECT * FROM lineItems WHERE itemName = 'BMW Z4'
 # SELECT * FROM lineItems ORDER BY price;
