@@ -54,6 +54,8 @@ def parse_value(raw_value):
         'BMW Z4' -> 'BMW Z4' (str)
     '''
     raw_value = raw_value.strip()
+    if (raw_value.startswith("'") and raw_value.endswith("'")) or (raw_value.startswith('"') and raw_value.endswith('"')):
+        raw_value = raw_value[1:-1] # strip quotes
     try:
         if '.' not in raw_value:
             return int(raw_value)
@@ -101,12 +103,14 @@ def run_query(query):
         if field not in rows[0]:
             raise Exception(f"Field not found: {field}")
 
-        # one liner: rows = [row for row in rows if operators[op](row[field], value)]
-        filtered_rows = []
-        for row in rows:
-            if operators[op](row[field], value):
-                filtered_rows.append(row)
-        rows = filtered_rows
+        # one liner:
+        rows = [row for row in rows if operators[op](row[field], value)]
+        # expanded version:
+        # filtered_rows = []
+        # for row in rows:
+        #     if operators[op](row[field], value):
+        #         filtered_rows.append(row)
+        # rows = filtered_rows
 
     # 3) ORDER BY sorting
     if order_by_clause:
@@ -127,8 +131,8 @@ def run_query(query):
         return [{col: row.get(col) for col in select_fields} for row in rows]
 
 # Insert these in the run_query to test:
-print(run_query("SELECT itemName FROM lineItems WHERE price > 1000;"))
+print(run_query("SELECT * FROM lineItems WHERE itemName = 'BMW Z4';"))
 # SELECT itemName FROM lineItems WHERE price > 1000;
-# SELECT * FROM lineItems WHERE itemName = 'BMW Z4'
+# SELECT * FROM lineItems WHERE itemName = 'BMW Z4';
 # SELECT * FROM lineItems ORDER BY price;
 # SELECT * FROM lineItems;
