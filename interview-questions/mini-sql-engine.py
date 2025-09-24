@@ -46,6 +46,23 @@ DATA = [
     { "id": 5, "orderId": 3, "itemName": "Ferrari Monza SP2", "price": 1390 },
 ]
 
+def parse_value(raw_value):
+    '''
+    Helper function to parse a value from the query string.
+    Example:
+        '1000' -> 1000 (int)
+        'BMW Z4' -> 'BMW Z4' (str)
+    '''
+    raw_value = raw_value.strip()
+    try:
+        if '.' not in raw_value:
+            return int(raw_value)
+        else:
+            return float(raw_value)
+    except ValueError:
+        return raw_value # aka keep it as a string
+
+
 def run_query(query):
     match = re.match(PARSER_REGEX, query)
     if not match:
@@ -79,8 +96,18 @@ def run_query(query):
         # Catch error if the where clause is invalid
         if not match:
             raise Exception(f"Invalid WHERE clause: {where_clause}")
-        field, op, value = match.groups()
+        field, op, value = match.groups() # price, >, 1000
+        value = parse_value(value)
+        if field not in rows[0]:
+            raise Exception(f"Field not found: {field}")
 
+        # one liner: rows = [row for row in rows if operators[op](row[field], value)]
+        filtered_rows = []
+        for row in rows:
+            if operators[op](row[field], value):
+                filtered_rows.append(row)
+
+        #
 
 
 # Insert these in the run_query to test:
