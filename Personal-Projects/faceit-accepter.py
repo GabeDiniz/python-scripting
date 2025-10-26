@@ -14,7 +14,7 @@ Add an image to the images folder and be sure to
   (i.e., img.jpg | button.png | etc.)
 '''
 
-image = "../images/csgoAccept.png"
+image = "../images/faceit.png"
 image2 = "../images/img.jpg"
 
 #####################################################
@@ -42,8 +42,8 @@ def clicking():
     while True:
         # Check if Queue Image has popped (appeared on users screen)
         pos = pyautogui.locateOnScreen(image, confidence=0.9)
-        if not (pos):
-          pos = pyautogui.locateOnScreen(image2, confidence=0.9)
+        # if not (pos):
+        #   pos = pyautogui.locateOnScreen(image2, confidence=0.9)
 
         # If Queue Image is present, click it
         if (pos):
